@@ -1,6 +1,6 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2019-09-09T20:47:27
+# Project created by QtCreator 2019-10-15T13:30:01
 #
 #-------------------------------------------------
 
@@ -44,3 +44,11 @@ FORMS += \
 
 RESOURCES += \
     icos.qrc
+
+DISTFILES += \
+    _runtime/icocomp/alrs_ico.ico \
+    _runtime/icocomp/mtlr_ico.ico \
+    _runtime/icocomp/poly_ico.ico \
+    _runtime/icocomp/rual_ico.ico \
+    _runtime/compfiles/1_poly.xml \
+    _runtime/compfiles/company_icos.ini

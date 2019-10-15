@@ -217,8 +217,3 @@ MainWindow::~MainWindow()
 {
     delete ui;
 }
-
-void MainWindow::on_refresh_clicked()
-{
-    qDebug()<<"Обновить";
-}

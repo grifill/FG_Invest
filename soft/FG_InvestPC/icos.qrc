@@ -1,10 +1,5 @@
 <RCC>
     <qresource prefix="/">
         <file>main_ico.ico</file>
-        <file>_runtime/compfiles/company_icos.ini</file>
-        <file>_runtime/icocomp/alrs_ico.ico</file>
-        <file>_runtime/icocomp/mtlr_ico.ico</file>
-        <file>_runtime/icocomp/poly_ico.ico</file>
-        <file>_runtime/icocomp/rual_ico.ico</file>
     </qresource>
 </RCC>

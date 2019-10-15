@@ -29,7 +29,6 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_refresh_clicked();
 
 private:
     Ui::MainWindow *ui;
