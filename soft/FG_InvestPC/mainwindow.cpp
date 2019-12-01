@@ -38,10 +38,9 @@ void addElementDataToList(QXmlStreamReader& xml, BagTable_Row_Values list)
 // Table ==============================================
 void MainWindow::BAGTable_Create()
 {
-
-    QString filexml = "1_poly.xml";
-    QString path_file_xml = QCoreApplication::applicationDirPath() + "./compfiles/"+ filexml;
-    QString path_file_ico = QCoreApplication::applicationDirPath() + "./compfiles/company_icos.ini";
+    QList<QString>XML_Companies;
+    QString filexml;
+    QString path_file_ini = QCoreApplication::applicationDirPath() + "./compfiles/company_ini.ini";
 
     BagTable_Row_Values company_data;
     QStandardItemModel *bagTable = new QStandardItemModel;
@@ -49,7 +48,7 @@ void MainWindow::BAGTable_Create()
     QList<QString> companies_icos;
 
     // Config files check -----------------------------
-    QFile file_ini(path_file_ico);
+    QFile file_ini(path_file_ini);
     if(file_ini.exists())
         qDebug() << "Файл ini существует";
 
@@ -67,24 +66,123 @@ void MainWindow::BAGTable_Create()
     horizontalHeader.append("Стоимость, руб");
     bagTable->setHorizontalHeaderLabels(horizontalHeader);
 
-    // Icons company set
-    QSettings companyico(path_file_ico, QSettings::IniFormat);
-    companyico.beginGroup("Companyicons_path");
-    int size = companyico.beginReadArray("company");
+    // Company set
+    QSettings company(path_file_ini, QSettings::IniFormat);
+    company.beginGroup("Company_xml");
+    int size = company.beginReadArray("company_xml");
     for (int i = 0; i < size; ++i)
     {
-        companyico.setArrayIndex(i);
-        QString ico_path = companyico.value("ico").toString();
+        company.setArrayIndex(i);
+        filexml = (company.value("xml").toString())+".xml";
+        qDebug() << filexml;
+        XML_Companies.append(filexml);
+
+        QString path_file_xml = QCoreApplication::applicationDirPath() + XML_Companies.value(i);
+        QFile file_xml(path_file_xml);
+        if (file_xml.open(QIODevice::ReadOnly | QIODevice::Text))
+        {
+            qDebug() << "Файл xml существует";
+        }
+
+        QXmlStreamReader xml(&file_xml);
+
+        while (!xml.atEnd() && !xml.hasError())
+        {
+            QXmlStreamReader::TokenType token = xml.readNext();
+            if (token == QXmlStreamReader::StartDocument)
+                continue;
+            if (token == QXmlStreamReader::StartElement)
+            {
+                if (xml.name() == "description")
+                    continue;
+                if (xml.name() == "companyname")
+                {
+                    xml.readNext();
+                    company_data.Company_NAME = xml.text().toString();
+                    QStandardItem *item = new QStandardItem(company_data.Company_NAME);
+                    item->setTextAlignment(Qt::AlignCenter);
+                    bagTable->setItem(i,1,item);
+                    continue;
+                }
+                if (xml.name() == "companycode")
+                {
+                    xml.readNext();
+                    company_data.Company_CODE = xml.text().toString();
+                    QStandardItem *item = new QStandardItem(company_data.Company_CODE);
+                    item->setTextAlignment(Qt::AlignCenter);
+                    bagTable->setItem(i,2,item);
+                    continue;
+                }
+                if (xml.name() == "companyval")
+                {
+                    xml.readNext();
+                    company_data.Stock_VAL = xml.text().toString();
+                    QStandardItem *item = new QStandardItem(company_data.Stock_VAL);
+                    item->setTextAlignment(Qt::AlignCenter);
+                    bagTable->setItem(i,6,item);
+                    continue;
+                }
+                if (xml.name() == "companybl")
+                {
+                    xml.readNext();
+                    company_data.Company_BPRICE = xml.text().toDouble();
+                    QStandardItem *item = new QStandardItem(QString::number(company_data.Company_BPRICE));
+                    item->setTextAlignment(Qt::AlignCenter);
+                    bagTable->setItem(i,5,item);
+                    continue;
+                }
+                if (xml.name() == "buy")
+                    continue;
+                while (!(xml.tokenType() == QXmlStreamReader::EndElement && xml.name() == "bvalue"))
+                {
+                    if (xml.tokenType() == QXmlStreamReader::StartElement)
+                    {
+                        if (xml.name() == "data")
+                        {
+                            xml.readNext();
+                            company_data.Stock_BDATE.append(xml.text().toString());
+                        }
+                        if (xml.name() == "price")
+                        {
+                            xml.readNext();
+                            company_data.Stock_PRICE.append(xml.text().toDouble());
+                        }
+                        if (xml.name() == "count")
+                        {
+                            xml.readNext();
+                            company_data.Stock_COUNT.append(xml.text().toInt());
+                        }
+                    }
+                    xml.readNext();
+                    break;
+                }
+            }
+        }
+
+
+    }
+    company.endArray();
+    company.endGroup();
+    qDebug() << XML_Companies;
+
+
+    company.beginGroup("Company_ico");
+    size = company.beginReadArray("company_ico");
+    for (int i = 0; i < size; ++i)
+    {
+        company.setArrayIndex(i);
+        QString ico_path = company.value("ico").toString();
         QStandardItem *item = new QStandardItem();
         item->setIcon(QIcon(ico_path).pixmap(400,400));
         item->setTextAlignment(Qt::AlignCenter);
         bagTable->setItem(i,0,item);
     }
-    companyico.endArray();
-    companyico.endGroup();
+    company.endArray();
+    company.endGroup();
 
 
-    // XML Files ---------------------------------------
+    // XML Files ------------------------------------------------------------------------------ >>>
+    /*QString path_file_xml = QCoreApplication::applicationDirPath() + XML_Companies.value(0);
     QFile file_xml(path_file_xml);
     if (file_xml.open(QIODevice::ReadOnly | QIODevice::Text))
     {
@@ -141,39 +239,32 @@ void MainWindow::BAGTable_Create()
             }
             if (xml.name() == "buy")
                 continue;
-            /*while (!(xml.tokenType() == QXmlStreamReader::EndElement && xml.name() == "bvalue"))
+            while (!(xml.tokenType() == QXmlStreamReader::EndElement && xml.name() == "bvalue"))
             {
-                qDebug()<<"Найден bvalue";
                 if (xml.tokenType() == QXmlStreamReader::StartElement)
                 {
                     if (xml.name() == "data")
                     {
-                        qDebug()<<"Найден data";
                         xml.readNext();
                         company_data.Stock_BDATE.append(xml.text().toString());
                     }
                     if (xml.name() == "price")
                     {
-                        qDebug()<<"Найден price";
                         xml.readNext();
                         company_data.Stock_PRICE.append(xml.text().toDouble());
                     }
                     if (xml.name() == "count")
                     {
-                        qDebug()<<"Найден count";
                         xml.readNext();
                         company_data.Stock_COUNT.append(xml.text().toInt());
                     }
                 }
                 xml.readNext();
-                qDebug()<<company_data.Stock_BDATE;
-                qDebug()<<company_data.Stock_PRICE;
-                qDebug()<<company_data.Stock_COUNT;
-                if(xml.name() == "sell")
-                    break;
-            }*/
+                break;
+            }
         }
-    }
+    }*/
+    // XML Files ------------------------------------------------------------------------------ >>>
 
 
     //-----------------------------------------------------
@@ -183,8 +274,9 @@ void MainWindow::BAGTable_Create()
     ui->maintable->setModel(bagTable);
     ui->maintable->setShowGrid(true);
     ui->maintable->resizeColumnsToContents();
-    ui->maintable->horizontalHeader()->setSectionResizeMode(1,QHeaderView::Stretch);
-    ui->maintable->horizontalHeader()->setSectionResizeMode(2,QHeaderView::Stretch);
+    ui->maintable->horizontalHeader()->setSectionResizeMode(1,QHeaderView::ResizeToContents);
+    ui->maintable->horizontalHeader()->setSectionResizeMode(2,QHeaderView::ResizeToContents);
+    ui->maintable->horizontalHeader()->setSectionResizeMode(7,QHeaderView::Stretch);
 
 }
 

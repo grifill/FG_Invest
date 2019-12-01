@@ -51,4 +51,34 @@ DISTFILES += \
     _runtime/icocomp/poly_ico.ico \
     _runtime/icocomp/rual_ico.ico \
     _runtime/compfiles/1_poly.xml \
-    _runtime/compfiles/company_icos.ini
+    _runtime/compfiles/company_icos.ini \
+    _runtime/icocomp/atvi_ico.ico \
+    _runtime/icocomp/endp_ico.ico \
+    _runtime/icocomp/m_ico.ico \
+    _runtime/icocomp/mu_ico.ico \
+    _runtime/icocomp/nok_ico.ico \
+    _runtime/icocomp/veon_ico.ico \
+    _runtime/icocomp/afks_ico.ico \
+    _runtime/icocomp/alrs_ico.ico \
+    _runtime/icocomp/atvi_ico.ico \
+    _runtime/icocomp/chmf_ico.ico \
+    _runtime/icocomp/endp_ico.ico \
+    _runtime/icocomp/enpldr_ico.ico \
+    _runtime/icocomp/gazp_ico.ico \
+    _runtime/icocomp/hear_ico.ico \
+    _runtime/icocomp/m_ico.ico \
+    _runtime/icocomp/mtlr_ico.ico \
+    _runtime/icocomp/mu_ico.ico \
+    _runtime/icocomp/nlmk_ico.ico \
+    _runtime/icocomp/nok_ico.ico \
+    _runtime/icocomp/nvtk_ico.ico \
+    _runtime/icocomp/okgb_ico.ico \
+    _runtime/icocomp/poly_ico.ico \
+    _runtime/icocomp/qiwidr_ico.ico \
+    _runtime/icocomp/rual_ico.ico \
+    _runtime/icocomp/sber_ico.ico \
+    _runtime/icocomp/selg_ico.ico \
+    _runtime/icocomp/tatnp_ico.ico \
+    _runtime/icocomp/veon_ico.ico \
+    _runtime/icocomp/vtbr_ico.ico \
+    _runtime/icocomp/yndx_ico.ico

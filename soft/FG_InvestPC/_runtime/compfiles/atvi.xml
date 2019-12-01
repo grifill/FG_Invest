@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf-8'?>
+<company>
+  <title>Activision Blizzard</title>
+<description>
+    <companyname>Activision Blizzard</companyname>
+  <companycode>ATVI</companycode>
+  <companyval>doll</companyval>
+  <companybl>35</companybl>
+  <companysl>80</companysl>
+  <companyinfo>-</companyinfo>
+  </description>
+<buy>
+    <bvalue>
+      <data>28.10.2019</data>
+    <price>55.88</price>
+    <count>1</count>
+    </bvalue>
+  </buy>
+<sell />
+<dividend />
+</company>
