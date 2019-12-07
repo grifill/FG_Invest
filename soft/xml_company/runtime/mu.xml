@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf-8'?>
+<company>
+  <title>Micron Technology</title>
+<description>
+    <companyname>Micron</companyname>
+  <companycode>MU</companycode>
+  <companyval>doll</companyval>
+  <companybl>25</companybl>
+  <companysl>100</companysl>
+  <companyinfo>-</companyinfo>
+  </description>
+<buy>
+    <bvalue>
+      <data>11.11.2019</data>
+    <price>46.53</price>
+    <count>1</count>
+    </bvalue>
+  </buy>
+<sell />
+<dividend />
+</company>

@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf-8'?>
+<company>
+  <title>Новатэк</title>
+<description>
+    <companyname>Новатэк</companyname>
+  <companycode>NVTK</companycode>
+  <companyval>rubl</companyval>
+  <companybl>900</companybl>
+  <companysl>3000</companysl>
+  <companyinfo>-</companyinfo>
+  </description>
+<buy>
+    <bvalue>
+      <data>19.11.2019</data>
+    <price>1319.2</price>
+    <count>1</count>
+    </bvalue>
+  </buy>
+<sell />
+<dividend />
+</company>

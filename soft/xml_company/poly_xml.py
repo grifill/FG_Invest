@@ -44,5 +44,5 @@ def xml_test_gen(journal_file, encode):
 
 if __name__ == "__main__":
     """ Основная функция - старт программы """
-    xml_test_gen('./runtime/1_poly.xml','utf-8')
+    xml_test_gen('./runtime/poly.xml','utf-8')
     exit(1)

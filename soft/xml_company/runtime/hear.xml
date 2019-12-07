@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf-8'?>
+<company>
+  <title>Turtle Beach Systems</title>
+<description>
+    <companyname>Turtle Beach</companyname>
+  <companycode>HEAR</companycode>
+  <companyval>doll</companyval>
+  <companybl>4</companybl>
+  <companysl>80</companysl>
+  <companyinfo>-</companyinfo>
+  </description>
+<buy>
+    <bvalue>
+      <data>25.11.2019</data>
+    <price>8.18</price>
+    <count>1</count>
+    </bvalue>
+  </buy>
+<sell />
+<dividend />
+</company>

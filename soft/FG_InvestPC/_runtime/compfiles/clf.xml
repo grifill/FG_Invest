@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf-8'?>
+<company>
+  <title>Cleveland-Cliffs Inc</title>
+<description>
+    <companyname>Cleveland-Cliffs</companyname>
+  <companycode>CLF</companycode>
+  <companyval>doll</companyval>
+  <companybl>5</companybl>
+  <companysl>25</companysl>
+  <companyinfo>-</companyinfo>
+  </description>
+<buy>
+    <bvalue>
+      <data>4.12.2019</data>
+    <price>7.60</price>
+    <count>2</count>
+    </bvalue>
+  </buy>
+<sell />
+<dividend />
+</company>

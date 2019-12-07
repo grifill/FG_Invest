@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf-8'?>
+<company>
+  <title>Mallinckrodt</title>
+<description>
+    <companyname>Mallinckrodt</companyname>
+  <companycode>MNK</companycode>
+  <companyval>doll</companyval>
+  <companybl>2</companybl>
+  <companysl>20</companysl>
+  <companyinfo>-</companyinfo>
+  </description>
+<buy>
+    <bvalue>
+      <data>4.12.2019</data>
+    <price>3.67</price>
+    <count>5</count>
+    </bvalue>
+  </buy>
+<sell />
+<dividend />
+</company>

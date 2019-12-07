@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf-8'?>
+<company>
+  <title>Southwestern Energy Company</title>
+<description>
+    <companyname>Southwestern Energy</companyname>
+  <companycode>SWN</companycode>
+  <companyval>doll</companyval>
+  <companybl>1</companybl>
+  <companysl>30</companysl>
+  <companyinfo>-</companyinfo>
+  </description>
+<buy>
+    <bvalue>
+      <data>26.11.2019</data>
+    <price>1.87</price>
+    <count>5</count>
+    </bvalue>
+  </buy>
+<sell />
+<dividend />
+</company>

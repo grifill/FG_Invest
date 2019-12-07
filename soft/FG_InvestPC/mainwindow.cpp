@@ -10,6 +10,7 @@ struct BagTable_Row_Values
     double Company_BPRICE;
     double Company_SPRICE;
     QString Stock_VAL;
+    double Stock_VAL_Median;
     double BALANCE;
     QList<QString> Stock_BDATE;
     QList<double> Stock_PRICE;
@@ -42,7 +43,6 @@ void MainWindow::BAGTable_Create()
     QString filexml;
     QString path_file_ini = QCoreApplication::applicationDirPath() + "./compfiles/company_ini.ini";
 
-    BagTable_Row_Values company_data;
     QStandardItemModel *bagTable = new QStandardItemModel;
     QStringList horizontalHeader,verticalHeader;
     QList<QString> companies_icos;
@@ -70,22 +70,24 @@ void MainWindow::BAGTable_Create()
     QSettings company(path_file_ini, QSettings::IniFormat);
     company.beginGroup("Company_xml");
     int size = company.beginReadArray("company_xml");
-    for (int i = 0; i < size; ++i)
+    for (int i = 0; i < size; i++)
     {
+
+        BagTable_Row_Values company_data;
+
         company.setArrayIndex(i);
         filexml = (company.value("xml").toString())+".xml";
-        qDebug() << filexml;
         XML_Companies.append(filexml);
 
         QString path_file_xml = QCoreApplication::applicationDirPath() + XML_Companies.value(i);
         QFile file_xml(path_file_xml);
+
         if (file_xml.open(QIODevice::ReadOnly | QIODevice::Text))
         {
             qDebug() << "Файл xml существует";
         }
 
         QXmlStreamReader xml(&file_xml);
-
         while (!xml.atEnd() && !xml.hasError())
         {
             QXmlStreamReader::TokenType token = xml.readNext();
@@ -151,6 +153,7 @@ void MainWindow::BAGTable_Create()
                         {
                             xml.readNext();
                             company_data.Stock_COUNT.append(xml.text().toInt());
+                            //qDebug()<<company_data.Stock_COUNT;
                         }
                     }
                     xml.readNext();
@@ -158,6 +161,29 @@ void MainWindow::BAGTable_Create()
                 }
             }
         }
+
+        // END OF PARSE
+        unsigned int count = 0;
+        for(int j=0; j<company_data.Stock_COUNT.count(); j++)
+        {
+            count+= company_data.Stock_COUNT.value(j);
+        }
+        QStandardItem *item = new QStandardItem(QString::number(count));
+        item->setTextAlignment(Qt::AlignCenter);
+        bagTable->setItem(i,3,item);
+
+        double rpise = 0;
+        double srpise = 0;
+        for(int j=0; j<company_data.Stock_PRICE.count(); j++)
+        {
+            rpise+= company_data.Stock_PRICE.value(j);
+            qDebug()<<rpise;
+        }
+
+        srpise = (double)rpise/company_data.Stock_PRICE.count();
+        item = new QStandardItem(QString::number(srpise));
+        item->setTextAlignment(Qt::AlignCenter);
+        bagTable->setItem(i,4,item);
 
 
     }
@@ -179,96 +205,6 @@ void MainWindow::BAGTable_Create()
     }
     company.endArray();
     company.endGroup();
-
-
-    // XML Files ------------------------------------------------------------------------------ >>>
-    /*QString path_file_xml = QCoreApplication::applicationDirPath() + XML_Companies.value(0);
-    QFile file_xml(path_file_xml);
-    if (file_xml.open(QIODevice::ReadOnly | QIODevice::Text))
-    {
-        qDebug() << "Файл xml существует";
-    }
-
-    QXmlStreamReader xml(&file_xml);
-    // Парсинг XML файла
-    // 1. <Title>
-    while (!xml.atEnd() && !xml.hasError())
-    {
-        QXmlStreamReader::TokenType token = xml.readNext();
-        if (token == QXmlStreamReader::StartDocument)
-            continue;
-        if (token == QXmlStreamReader::StartElement)
-        {
-            if (xml.name() == "description")
-                continue;
-            if (xml.name() == "companyname")
-            {
-                xml.readNext();
-                company_data.Company_NAME = xml.text().toString();
-                QStandardItem *item = new QStandardItem(company_data.Company_NAME);
-                item->setTextAlignment(Qt::AlignCenter);
-                bagTable->setItem(0,1,item);
-                continue;
-            }
-            if (xml.name() == "companycode")
-            {
-                xml.readNext();
-                company_data.Company_CODE = xml.text().toString();
-                QStandardItem *item = new QStandardItem(company_data.Company_CODE);
-                item->setTextAlignment(Qt::AlignCenter);
-                bagTable->setItem(0,2,item);
-                continue;
-            }
-            if (xml.name() == "companyval")
-            {
-                xml.readNext();
-                company_data.Stock_VAL = xml.text().toString();
-                QStandardItem *item = new QStandardItem(company_data.Stock_VAL);
-                item->setTextAlignment(Qt::AlignCenter);
-                bagTable->setItem(0,6,item);
-                continue;
-            }
-            if (xml.name() == "companybl")
-            {
-                xml.readNext();
-                company_data.Company_BPRICE = xml.text().toDouble();
-                QStandardItem *item = new QStandardItem(QString::number(company_data.Company_BPRICE));
-                item->setTextAlignment(Qt::AlignCenter);
-                bagTable->setItem(0,5,item);
-                continue;
-            }
-            if (xml.name() == "buy")
-                continue;
-            while (!(xml.tokenType() == QXmlStreamReader::EndElement && xml.name() == "bvalue"))
-            {
-                if (xml.tokenType() == QXmlStreamReader::StartElement)
-                {
-                    if (xml.name() == "data")
-                    {
-                        xml.readNext();
-                        company_data.Stock_BDATE.append(xml.text().toString());
-                    }
-                    if (xml.name() == "price")
-                    {
-                        xml.readNext();
-                        company_data.Stock_PRICE.append(xml.text().toDouble());
-                    }
-                    if (xml.name() == "count")
-                    {
-                        xml.readNext();
-                        company_data.Stock_COUNT.append(xml.text().toInt());
-                    }
-                }
-                xml.readNext();
-                break;
-            }
-        }
-    }*/
-    // XML Files ------------------------------------------------------------------------------ >>>
-
-
-    //-----------------------------------------------------
-
 
     // View
     ui->maintable->setModel(bagTable);

@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='utf-8'?>
+<company>
+  <title>АФК Система</title>
+<description>
+    <companyname>АФК Система</companyname>
+  <companycode>AFKS</companycode>
+  <companyval>rubl</companyval>
+  <companybl>10</companybl>
+  <companysl>80</companysl>
+  <companyinfo>-</companyinfo>
+  </description>
+<buy>
+    <bvalue>
+      <data>19.11.2019</data>
+    <price>15.309</price>
+    <count>200</count>
+    </bvalue>
+  <bvalue>
+      <data>28.11.2019</data>
+    <price>15.043</price>
+    <count>100</count>
+    </bvalue>
+  </buy>
+<sell />
+<dividend />
+</company>
