@@ -1,19 +1,19 @@
 <?xml version='1.0' encoding='utf-8'?>
 <company>
-  <title>Intel Corp</title>
+  <title>TSMC</title>
 <description>
-    <companyname>Intel</companyname>
-  <companycode>INTC</companycode>
+    <companyname>Taiwan Semiconductor Manufacturing Company</companyname>
+  <companycode>TSM</companycode>
   <companyval>doll</companyval>
-  <companybl>25</companybl>
+  <companybl>40</companybl>
   <companysl>100</companysl>
   <companyinfo>-</companyinfo>
   </description>
 <buy>
     <bvalue>
-      <data>1.03.2020</data>
-    <price>61.7</price>
-    <count>2</count>
+      <data>01.03.2020</data>
+    <price>58.67</price>
+    <count>1</count>
     </bvalue>
   </buy>
 <sell />

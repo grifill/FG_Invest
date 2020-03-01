@@ -1,19 +1,19 @@
 <?xml version='1.0' encoding='utf-8'?>
 <company>
-  <title>Mallinckrodt</title>
+  <title>Livent</title>
 <description>
-    <companyname>Mallinckrodt</companyname>
-  <companycode>MNK</companycode>
+    <companyname>Livent Corporation</companyname>
+  <companycode>LTHM</companycode>
   <companyval>doll</companyval>
-  <companybl>2</companybl>
-  <companysl>20</companysl>
+  <companybl>5</companybl>
+  <companysl>50</companysl>
   <companyinfo>-</companyinfo>
   </description>
 <buy>
     <bvalue>
       <data>01.03.2020</data>
-    <price>4.01</price>
-    <count>50</count>
+    <price>10.21</price>
+    <count>10</count>
     </bvalue>
   </buy>
 <sell />

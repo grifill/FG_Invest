@@ -6,11 +6,11 @@
 import xmlcomp
 
 # ===================================================================
-# ======= Southwestern Energy Company ===============================
+# ======= Taiwan Semiconductor Manufacturing Company ================
 # ===================================================================
 
 BUY = {
-    0: {"data": '01.03.2020', "price": '1.64', "count": '50'}
+    0: {"data": '01.03.2020', "price": '58.67', "count": '1'}
 }
 
 SELL = {
@@ -21,12 +21,12 @@ DIV = {
 
 
 DESC = dict(
-    Title="Southwestern Energy Company",
-    ComppanyName="Southwestern Energy",
-    ComppanyCode="SWN",
+    Title="TSMC",
+    ComppanyName="Taiwan Semiconductor Manufacturing Company",
+    ComppanyCode="TSM",
     ComppanyVal="doll",
-    ComppanyBuyLevel="1",
-    ComppanySellLevel="30",
+    ComppanyBuyLevel="40",
+    ComppanySellLevel="100",
     ComppanyInfo="-",
 )
 # ===================================================================
@@ -37,5 +37,5 @@ def xml_test_gen(journal_file, encode):
 
 if __name__ == "__main__":
     """ Основная функция - старт программы """
-    xml_test_gen('./runtime/swn.xml','utf-8')
+    xml_test_gen('./runtime/tsm.xml','utf-8')
     exit(1)

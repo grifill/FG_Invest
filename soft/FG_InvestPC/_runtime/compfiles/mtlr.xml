@@ -1,18 +1,18 @@
 <?xml version='1.0' encoding='utf-8'?>
 <company>
-  <title>Mallinckrodt</title>
+  <title>Мечел</title>
 <description>
-    <companyname>Mallinckrodt</companyname>
-  <companycode>MNK</companycode>
-  <companyval>doll</companyval>
-  <companybl>2</companybl>
-  <companysl>20</companysl>
+    <companyname>ПАО Мечел</companyname>
+  <companycode>MTLR</companycode>
+  <companyval>rubl</companyval>
+  <companybl>40</companybl>
+  <companysl>300</companysl>
   <companyinfo>-</companyinfo>
   </description>
 <buy>
     <bvalue>
       <data>01.03.2020</data>
-    <price>4.01</price>
+    <price>64.41</price>
     <count>50</count>
     </bvalue>
   </buy>

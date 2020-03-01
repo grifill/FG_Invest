@@ -10,7 +10,7 @@ import xmlcomp
 # ===================================================================
 
 BUY = {
-    0: {"data": '4.12.2019', "price": '7.60', "count": '2'}
+    0: {"data": '01.03.2020', "price": '7.31', "count": '7'}
 }
 
 SELL = {
@@ -25,7 +25,7 @@ DESC = dict(
     ComppanyName="Cleveland-Cliffs",
     ComppanyCode="CLF",
     ComppanyVal="doll",
-    ComppanyBuyLevel="5",
+    ComppanyBuyLevel="2",
     ComppanySellLevel="25",
     ComppanyInfo="-",
 )
